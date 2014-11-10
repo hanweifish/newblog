@@ -1,0 +1,41 @@
+{% extends "newblog/base.html" %}
+{% block content %}
+<div class= "Blog-Top" align="center">Add Blog</div>  
+    
+    <div style="height:400px">
+
+<form action="" method="post">
+    {% csrf_token %} 
+    <div class="field">
+        <label for="id_caption">Title: </label>
+        {% if form.title.errors %}
+        <div class="alert alert-error">
+            {{ form.tittle.errors }}          
+        </div>
+        {% endif %}
+        {{ form.title }}
+    </div>
+<!--     <div class="field">
+        <label for="id_tag">tags</label>
+        {% if tag.tag_name.errors %}
+        <div class="alert alert-error">
+            {{ tag.tag_name.errors }}
+        </div>
+        {% endif %}
+        {{ tag.tag_name }}
+ </div> -->
+    <div class="field">        
+        <label for="id_content">Content: </label>
+        {% if form.content.errors %}
+        <div class="alert alert-error">
+            {{ form.content.errors }}
+        </div>
+        {% endif %}
+        {{ form.content }}
+    </div>
+    <div>{{error}}</div>
+    <div class="form-actions">
+        <input class="btn btn-primary" type="submit" value="save and add">
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "newblog/base.html" %}
+{% block content %}
+<div class= "Blog-Top" align="center">Blog</div>  
+    
+ 
+
+	{% for blog in blogs %}
+	<div class="blog">
+		<div class="blog-title"><a class="login-link" href = {% url "newblog:blog_detail" blog.id %}>{{blog.title}}</a></div>
+		<hr>
+		<div class="blog-content">{{blog.content}}</div>
+        <br>
+		<div class="blog-bottom">Posted by: {{blog.user.username}}<br>Post Time: {{blog.published_time}}</div>
+	</div>
+	<br><br>
+	{% endfor %}
+{% endblock %}

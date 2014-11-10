@@ -1,0 +1,25 @@
+{% extends "newblog/base.html" %}
+{% block content %}
+
+<div class= "Blog-Top" align="center">Blog Detail</div>  
+    
+    <div style="height:400px"> 
+
+	<div class="blog">
+		<div class="blog-title">{{blog.title}}</div>
+		<hr>
+		<div class="blog-content">{{blog.content}}</div>
+        <br>
+        {% if user.is_authenticated and user.username = blog.user.username%} 
+		<div class="blog-bottom"><a class="login-link" href="{% url "newblog:blog_update" blog.id%}">Update</a>
+        |
+<a class="login-link" href="{% url "newblog:blog_del" blog.id%}">Delete</a></div>
+		<br>
+		{% endif%}
+		<div class="blog-bottom">Posted by: {{blog.user.username}}<br>Post Time: {{blog.published_time}}</div>
+
+	</div>
+
+	<br><br>
+
+{% endblock %}

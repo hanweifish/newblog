@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/static/newblog/main.css" />
+
+  <title>Blog</title>
+</head>
+
+<body>
+
+  <div class="login-area">
+  {% if user.is_authenticated %} 
+      Welcome {{user.username}}
+        |
+      <a class="login-link" href="{% url "newblog:blog_index" %}">Home</a>
+        |
+      <a class="login-link" href="{% url "newblog:blog_myblog" %}">Myblog</a>
+        |
+      <a class="login-link" href="{% url "newblog:blog_add" %}">Post</a>
+      |
+      <a class="login-link" href="{% url "newblog:logout" %}">Logout</a>
+ {% else %}
+
+      <a class="login-link" href="{% url "newblog:blog_index" %}">Home</a>
+        |
+      <a class="login-link" href="{% url "newblog:login" %}">Login</a>
+      |
+      <a class="login-link" href="{% url "newblog:signup" %}">Signup</a>
+
+  {% endif %}
+  </div>
+
+  <div class="content">
+  {% block content %}
+  {% endblock %}
+  </div>
+  <br><br>
+  <hr>
+  <div class="foot">@Designed by Victor</div>
+</body>
+
+</html>
