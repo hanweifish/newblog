@@ -1,0 +1,66 @@
+{% extends "newblog/base.html" %}
+ 
+  
+ 
+{% block header %}
+    {% block menu %}
+<div class="navbar navbar-inverse navbar-fixed-top"> 
+
+  <div class="navbar-inner"> 
+
+        <div class="container">
+    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
+    <span class="icon-bar"></span> 
+    <span class="icon-bar"></span> 
+    <span class="icon-bar"></span> </button>
+
+                <a class="brand" href="#">BLOG</a>
+                <div class="nav-collapse collapse">
+                <ul class="nav">
+ 
+                    
+                    <li class="active">
+                        <a href="{% url "newblog:blog_index" %}">Home</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                    <li class="">
+                        <a href="{% url "newblog:blog_myblog" %}">Myblog</a>
+                    </li>
+                    <li class="">
+                        <a  href="{% url "newblog:blog_add" %}">Post</a>
+                    </Li>
+                    <li class="">
+                        <a  href="{% url "newblog:logout" %}">Logout</a>
+                    </Li>
+                    <li class="">
+                        <a href="#">Contact</a>
+                    </li>
+                     <Li>
+                        <a href="#">  </a>
+                    </Li>
+
+                    <li class="navbar-text navbar-right"> Welcome: {{user.username}} </li>
+
+
+                {% else %} 
+
+                    <li class="">
+                        <a href="{% url "newblog:login" %}">Login</a>
+                    </li>
+                    <li class="">
+                        <a  href="{% url "newblog:signup" %}">Signup</a>
+                    </Li>
+                     <li class="">
+                        <a href="#">Contact</a>
+                    </li>
+                {% endif %}
+
+                </ul>  
+                </div>                   
+            </div>                
+    </div>
+    </div>    
+    {% endblock %}
+{% endblock %}
+

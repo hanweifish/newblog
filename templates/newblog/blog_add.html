@@ -1,41 +1,118 @@
-{% extends "newblog/base.html" %}
-{% block content %}
-<div class= "Blog-Top" align="center">Add Blog</div>  
-    
-    <div style="height:400px">
+{% extends "newblog/blog_base.html" %}
 
-<form action="" method="post">
+    {% block extra_head %}
+ <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+
+      .form-horizontal {
+        max-width: 800px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+
+      .form-horizontal input[type="text"]{
+     width: 400px;
+      }
+      .form-horizontal textarea{
+        width: 400px;
+        height:200px;
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    </style>
+
+
+    {% endblock %}
+
+{% block article %}
+
+<div class="span8">
+<form class="form-horizontal" method="post">
     {% csrf_token %} 
-    <div class="field">
-        <label for="id_caption">Title: </label>
-        {% if form.title.errors %}
+    <fieldset>
+      <div id="legend" class="">
+<!--         <legend class="">Blog</legend> -->
+      </div>
+    <div class="control-group">
+
+          <!-- Text input-->
+          <label class="control-label">Title</label>
+          <div class="controls">
+        
+            {{ form.title }}
+          </div>
+          {% if form.title.errors %}
+          <br>
+          <div class="controls">
         <div class="alert alert-error">
-            {{ form.tittle.errors }}          
+            {{ form.title.errors }}          
         </div>
-        {% endif %}
-        {{ form.title }}
     </div>
-<!--     <div class="field">
-        <label for="id_tag">tags</label>
+        {% endif %}
+
+        </div>
+
+
+        <div class="control-group">
+
+          <!-- Text input-->
+          <label class="control-label">Tags</label>
+          <div class="controls">
+
+            {{ tag.tag_name }}
+          </div>
         {% if tag.tag_name.errors %}
+        <br>
+          <div class="controls">
         <div class="alert alert-error">
             {{ tag.tag_name.errors }}
         </div>
+    </div>
         {% endif %}
-        {{ tag.tag_name }}
- </div> -->
-    <div class="field">        
-        <label for="id_content">Content: </label>
+
+
+        </div>
+
+
+
+        <div class="control-group">
+
+          <!-- Textarea -->
+          <label class="control-label">Content</label>
+          <div class="controls">
+
+            {{ form.content }}
+            </div>
         {% if form.content.errors %}
+       <br>
+          <div class="controls">
         <div class="alert alert-error">
             {{ form.content.errors }}
         </div>
+        </div>
         {% endif %}
-        {{ form.content }}
+          </div>
+
+
+    <div class="controls">
+        <input class="btn btn-primary" type="submit" value="Save and Add">
     </div>
-    <div>{{error}}</div>
-    <div class="form-actions">
-        <input class="btn btn-primary" type="submit" value="save and add">
-    </div>
-</form>
+    </fieldset>
+  </form>
+
+</div>
+
+
 {% endblock %}

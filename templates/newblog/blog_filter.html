@@ -1,5 +1,5 @@
 {% extends "newblog/blog_base.html" %}
-{% load comments %}
+<!-- {% load comments %} -->
 {% block title %} Blog {% endblock %}
  
 {% block article %}
@@ -11,6 +11,7 @@
                 <i class="icon-tag"></i> <small>{{ tag }}</small>
             {% endfor %}
         </p>
+<!-- load markup -->
         <div>{{ blog.content}} </div>
  
         <div class="row-fluid">
@@ -23,8 +24,8 @@
                 <a href="{% url "newblog:blog_del" blog.id %}" title="delete"><i class="icon-trash"></i></a>
                 <a href="{% url "newblog:blog_update" blog.id%}" title="edit"><i class="icon-edit"></i></a>
                 {% endif%}
-                {% get_comment_count for blog as comment_count %}
-                <a href="{% url "newblog:blog_detail" blog.id %}#cmt" title="comment"><i class=" icon-comment"></i>{{ comment_count }}</a>
+<!--                 {% get_comment_count for blog as comment_count %}
+                <a href="{% url "newblog:blog_detail" blog.id %}#cmt" title="comment"><i class=" icon-comment"></i>{{ comment_count }}</a> -->
             </div>
         </div>
     <hr>

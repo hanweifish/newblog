@@ -14,14 +14,12 @@ from django.contrib.auth.models import User
 
  
 class BlogForm(forms.Form):
-    title = forms.CharField(label='title', max_length=100)
-    content = forms.CharField(widget=forms.Textarea)
+    title = forms.CharField(required=True, label='title', max_length=100)
+    content = forms.CharField(widget=forms.Textarea())
 
-# class TagForm(forms.Form):
-#     tag_name = forms.CharField()
+class TagForm(forms.Form):
+    tag_name = forms.CharField()
 
-# class UserForm(forms.Form):
-#     tag_name = forms.CharField()
 
 class LoginForm(forms.Form):  
     username = forms.CharField(  
@@ -48,4 +46,5 @@ class LoginForm(forms.Form):
         if not self.is_valid():  
             raise forms.ValidationError(u"Please input username and password")  
         else:  
-            cleaned_data = super(LoginForm, self).clean()   
+            cleaned_data = super(LoginForm, self).clean()  
+

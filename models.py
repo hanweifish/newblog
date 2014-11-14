@@ -19,7 +19,7 @@ class Tag(models.Model):
 
 
 class Blog(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
     user = models.ForeignKey(User)
     tags = models.ManyToManyField(Tag, blank=True)
     content = models.TextField()

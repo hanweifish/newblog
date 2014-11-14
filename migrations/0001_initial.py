@@ -2,11 +2,13 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -14,7 +16,7 @@ class Migration(migrations.Migration):
             name='Blog',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('title', models.CharField(max_length=50)),
+                ('title', models.CharField(max_length=100)),
                 ('content', models.TextField()),
                 ('published_time', models.DateTimeField(auto_now_add=True)),
                 ('update_time', models.DateTimeField(auto_now=True)),
@@ -35,18 +37,6 @@ class Migration(migrations.Migration):
             },
             bases=(models.Model,),
         ),
-        migrations.CreateModel(
-            name='User',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=30)),
-                ('pwd', models.CharField(max_length=30)),
-                ('email', models.EmailField(max_length=75, blank=True)),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
         migrations.AddField(
             model_name='blog',
             name='tags',
@@ -56,7 +46,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='blog',
             name='user',
-            field=models.ForeignKey(to='newblog.User'),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,
         ),
     ]
